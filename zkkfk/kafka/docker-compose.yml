@@ -2,7 +2,7 @@ version: '2'
 services:
     kafka0:
         image: wurstmeister/kafka
-        restart: always
+        restart: on-failure
         hostname: kafka0
         container_name: kafka0
         ports:
@@ -22,7 +22,7 @@ services:
             ipv4_address: 172.19.1.13
     kafka1:
         image: wurstmeister/kafka
-        restart: always
+        restart: on-failure
         hostname: kafka1
         container_name: kafka1
         ports:
@@ -42,7 +42,7 @@ services:
             ipv4_address: 172.19.1.14
     kafka2:
         image: wurstmeister/kafka
-        restart: always
+        restart: on-failure
         hostname: kafka2
         container_name: kafka2
         ports:

@@ -1,0 +1,112 @@
+import org.ajoberstar.grgit.Grgit
+buildscript {
+    ext {
+        springBootVersion = '2.1.7.RELEASE'
+        buildType='sandbox'
+        depotInfo='none'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath ("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '2.1.7.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'org.ajoberstar.grgit' version'2.3.0'
+}
+
+ext {
+    set('springCloudVersion', "Greenwich.SR2")
+}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'idea'
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+mainClassName = 'com.chrdw.push.service.Starter'
+
+configurations.all {
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-configuration-processor"
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile group: 'org.apache.zookeeper', name: 'zookeeper', version: '3.4.0', ext: 'pom'
+    compile group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.1.7.RELEASE'
+
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+    testCompile group: 'io.springfox', name: 'springfox-staticdocs',version: '2.0.1'
+    testCompile group: 'junit', name: 'junit', version:'4.12'
+    testCompile group: 'org.mockito', name: 'mockito-all', version:'1.10.19'
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.6'
+
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    implementation 'org.springframework.cloud:spring-cloud-bus'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.retry:spring-retry'
+
+}
+
+
+bootRun {
+    configure {
+        systemProperty "application.environment", "dev"
+        systemProperty "spring.profiles.active", "dev"
+        systemProperty "application.home", "."
+    }
+    jvmArgs=["-Dproject.name=${project.name}",
+             "-Dapplication.name=${project.name}",
+             '-Dapplication.environment=dev',
+             '-Dapplication.home=.',
+             '-Xdebug',
+             '-Xrunjdwp:server=y,transport=dt_socket,address=5006,suspend=n']
+}
+
+bootWar {
+    enabled=true
+    archiveName project.name + '.war'
+    manifest {
+        attributes("Application-Name": "${project.name}",
+                "Application-Version": "${project.version}",
+                "Application-Description": "${project.description}",
+                "Implementation-Title": "${project.name}",
+                "Implementation-Version": "${grgit.head().id}",
+                "Build-Time": new Date(),
+                "Build": "${buildType}",
+                "Branch": "${grgit.branch.current().name}",
+                "Depot": "${depotInfo}",
+                "mainClass": "${mainClassName}")
+    }
+
+}
+
+task dependencyReportFile(type: DependencyReportTask) {
+    outputFile = file('build/dependencies.txt')
+}
