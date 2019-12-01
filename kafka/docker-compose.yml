@@ -7,10 +7,6 @@ services:
         container_name: kafka0
         ports:
           - "9091:9092"
-        depends_on:
-          - zk0
-          - zk1
-          - zk2
         environment:
           KAFKA_ADVERTISED_HOST_NAME: kafka0
           KAFKA_ADVERTISED_PORT: 9092 
@@ -18,9 +14,9 @@ services:
         volumes:
           - /home/chrdw/kfkcluster/kfaka0/logs:/logs
         external_links: 
-          -zk0
-          -zk1
-          -zk2
+          - zk0
+          - zk1
+          - zk2
         networks: 
           zkkfk:
             ipv4_address: 172.19.1.13
@@ -31,10 +27,6 @@ services:
         container_name: kafka1
         ports:
           - "9092:9092"
-        depends_on:
-          - zk0
-          - zk1
-          - zk2
         environment:
           KAFKA_ADVERTISED_HOST_NAME: kafka1
           KAFKA_ADVERTISED_PORT: 9092 
@@ -42,9 +34,9 @@ services:
         volumes:
           - /home/chrdw/kfkcluster/kfaka1/logs:/logs
         external_links: 
-          -zk0
-          -zk1
-          -zk2
+          - zk0
+          - zk1
+          - zk2
         networks: 
           zkkfk:
             ipv4_address: 172.19.1.14
@@ -55,10 +47,6 @@ services:
         container_name: kafka2
         ports:
           - "9093:9092"
-        depends_on:
-          - zk0
-          - zk1
-          - zk2
         environment:
           KAFKA_ADVERTISED_HOST_NAME: kafka2
           KAFKA_ADVERTISED_PORT: 9092 
@@ -66,9 +54,9 @@ services:
         volumes:
           - /home/chrdw/kfkcluster/kfaka2/logs:/logs
         external_links: 
-          -zk0
-          -zk1
-          -zk2
+          - zk0
+          - zk1
+          - zk2
         networks: 
           zkkfk:
             ipv4_address: 172.19.1.15
