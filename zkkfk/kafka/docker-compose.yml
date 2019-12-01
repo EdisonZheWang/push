@@ -1,66 +1,54 @@
 version: '2'
 services:
-    kafka0:
-        image: wurstmeister/kafka
-        restart: on-failure
-        hostname: kafka0
-        container_name: kafka0
-        ports:
-          - "9091:9092"
-        environment:
-          KAFKA_ADVERTISED_HOST_NAME: kafka0
-          KAFKA_ADVERTISED_PORT: 9092 
-          KAFKA_ZOOKEEPER_CONNECT: zk0:2181,zk1:2181,zk2:2181
-        volumes:
-          - /home/chrdw/kfkcluster/kfaka0/logs:/logs
-        external_links: 
-          - zk0
-          - zk1
-          - zk2
-        networks: 
-          zkkfk:
-            ipv4_address: 172.19.1.13
     kafka1:
         image: wurstmeister/kafka
         restart: on-failure
         hostname: kafka1
         container_name: kafka1
         ports:
-          - "9092:9092"
+          - "9091:9092"
         environment:
           KAFKA_ADVERTISED_HOST_NAME: kafka1
-          KAFKA_ADVERTISED_PORT: 9092 
-          KAFKA_ZOOKEEPER_CONNECT: zk0:2181,zk1:2181,zk2:2181
+          KAFKA_ADVERTISED_PORT: 9092
+          KAFKA_ZOOKEEPER_CONNECT: zk1:2181,zk2:2181,zk3:2181
         volumes:
-          - /home/chrdw/kfkcluster/kfaka1/logs:/logs
-        external_links: 
-          - zk0
+          - /home/chrdw/kfkcluster/kafka1/logs:/logs
+        external_links:
           - zk1
           - zk2
-        networks: 
-          zkkfk:
-            ipv4_address: 172.19.1.14
+          - zk3
     kafka2:
         image: wurstmeister/kafka
         restart: on-failure
         hostname: kafka2
         container_name: kafka2
         ports:
-          - "9093:9092"
+          - "9092:9092"
         environment:
           KAFKA_ADVERTISED_HOST_NAME: kafka2
           KAFKA_ADVERTISED_PORT: 9092 
-          KAFKA_ZOOKEEPER_CONNECT: zk0:2181,zk1:2181,zk2:2181
+          KAFKA_ZOOKEEPER_CONNECT: zk1:2181,zk2:2181,zk3:2181
         volumes:
-          - /home/chrdw/kfkcluster/kfaka2/logs:/logs
+          - /home/chrdw/kfkcluster/kafka2/logs:/logs
         external_links: 
-          - zk0
           - zk1
           - zk2
-        networks: 
-          zkkfk:
-            ipv4_address: 172.19.1.15
-networks: 
-  zkkfk:
-    external: 
-      name: zkkfk
+          - zk3
+    kafka3:
+        image: wurstmeister/kafka
+        restart: on-failure
+        hostname: kafka3
+        container_name: kafka3
+        ports:
+          - "9093:9092"
+        environment:
+          KAFKA_ADVERTISED_HOST_NAME: kafka3
+          KAFKA_ADVERTISED_PORT: 9092 
+          KAFKA_ZOOKEEPER_CONNECT: zk1:2181,zk2:2181,zk3:2181
+        volumes:
+          - /home/chrdw/kfkcluster/kafka3/logs:/logs
+        external_links: 
+          - zk1
+          - zk2
+          - zk3
+
