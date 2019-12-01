@@ -1,1 +1,1 @@
-docker network create zkkfk
+docker network create --gateway 172.19.1.1 --subnet 172.19.1.0/24

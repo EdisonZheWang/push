@@ -22,7 +22,8 @@ services:
           -zk1
           -zk2
         networks: 
-          zkkfk
+          zkkfk:
+            ipv4_address: 172.19.1.13
     kafka1:
         image: wurstmeister/kafka
         restart: always
@@ -45,7 +46,8 @@ services:
           -zk1
           -zk2
         networks: 
-          zkkfk
+          zkkfk:
+            ipv4_address: 172.19.1.14
     kafka2:
         image: wurstmeister/kafka
         restart: always
@@ -68,7 +70,8 @@ services:
           -zk1
           -zk2
         networks: 
-          zkkfk
+          zkkfk:
+            ipv4_address: 172.19.1.15
 networks: 
   zkkfk:
     external: 

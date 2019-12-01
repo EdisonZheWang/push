@@ -14,7 +14,8 @@ services:
             ZOO_MY_ID: 1
             ZOO_SERVERS: server.1=zk0:2888:3888 server.2=zk1:2888:3888 server.3=zk2:2888:3888
         networks: 
-          zkkfk
+          zkkfk:
+            ipv4_address: 172.19.1.10
     zk1:
         image: zookeeper:3.4
         restart: always
@@ -28,7 +29,8 @@ services:
             ZOO_MY_ID: 2
             ZOO_SERVERS: server.1=zk0:2888:3888 server.2=zk1:2888:3888 server.3=zk2:2888:3888
         networks: 
-          zkkfk
+          zkkfk:
+            ipv4_address: 172.19.1.11
     zk2:
         image: zookeeper:3.4
         restart: always
@@ -42,7 +44,8 @@ services:
             ZOO_MY_ID: 3
             ZOO_SERVERS: server.1=zk0:2888:3888 server.2=zk1:2888:3888 server.3=zk2:2888:3888
         networks: 
-          zkkfk
+          zkkfk:
+            ipv4_address: 172.19.1.12
 networks: 
   zkkfk:
     external: 
