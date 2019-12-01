@@ -1,0 +1,78 @@
+version: '2'
+services:
+    kafka0:
+        image: wurstmeister/kafka
+        restart: always
+        hostname: kafka0
+        container_name: kafka0
+        ports:
+          - "9091:9092"
+        depends_on:
+          - zk0
+          - zk1
+          - zk2
+        environment:
+          KAFKA_ADVERTISED_HOST_NAME: kafka0
+          KAFKA_ADVERTISED_PORT: 9092 
+          KAFKA_ZOOKEEPER_CONNECT: zk0:2181,zk1:2181,zk2:2181
+        volumes:
+          - /home/chrdw/kfkcluster/kfaka0/logs:/logs
+        external_links: 
+          -zk0
+          -zk1
+          -zk2
+        networks: 
+          zkkfk:
+            ipv4_address: 172.19.0.13
+    kafka1:
+        image: wurstmeister/kafka
+        restart: always
+        hostname: kafka1
+        container_name: kafka1
+        ports:
+          - "9092:9092"
+        depends_on:
+          - zk0
+          - zk1
+          - zk2
+        environment:
+          KAFKA_ADVERTISED_HOST_NAME: kafka1
+          KAFKA_ADVERTISED_PORT: 9092 
+          KAFKA_ZOOKEEPER_CONNECT: zk0:2181,zk1:2181,zk2:2181
+        volumes:
+          - /home/chrdw/kfkcluster/kfaka1/logs:/logs
+        external_links: 
+          -zk0
+          -zk1
+          -zk2
+        networks: 
+          zkkfk:
+            ipv4_address: 172.19.0.14
+    kafka2:
+        image: wurstmeister/kafka
+        restart: always
+        hostname: kafka2
+        container_name: kafka2
+        ports:
+          - "9093:9092"
+        depends_on:
+          - zk0
+          - zk1
+          - zk2
+        environment:
+          KAFKA_ADVERTISED_HOST_NAME: kafka2
+          KAFKA_ADVERTISED_PORT: 9092 
+          KAFKA_ZOOKEEPER_CONNECT: zk0:2181,zk1:2181,zk2:2181
+        volumes:
+          - /home/chrdw/kfkcluster/kfaka2/logs:/logs
+        external_links: 
+          -zk0
+          -zk1
+          -zk2
+        networks: 
+          zkkfk:
+            ipv4_address: 172.19.0.15
+networks: 
+  zkkfk:
+    external: 
+      name: zkkfk

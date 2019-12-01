@@ -1,0 +1,52 @@
+version: '2'
+services:
+    zk0:
+        image: zookeeper:3.4
+        restart: always
+        hostname: zk0
+        container_name: zk0
+        ports:
+          - "2181:2181"
+        volumes: 
+          - /home/chrdw/zkcluster/zk0/data:/data
+          - /home/chrdw/zkcluster/zk0/datalog:/datalog
+        environment:
+            ZOO_MY_ID: 1
+            ZOO_SERVERS: server.1=zk0:2888:3888 server.2=zk1:2888:3888 server.3=zk2:2888:3888
+        networks: 
+          zkkfk:
+            ipv4_address: 172.19.0.10
+    zk1:
+        image: zookeeper:3.4
+        restart: always
+        container_name: zk1
+        ports:
+          - "2182:2181"
+        volumes: 
+          - /home/chrdw/zkcluster/zk1/data:/data
+          - /home/chrdw/zkcluster/zk1/datalog:/datalog
+        environment:
+            ZOO_MY_ID: 2
+            ZOO_SERVERS: server.1=zk0:2888:3888 server.2=zk1:2888:3888 server.3=zk2:2888:3888
+        networks: 
+          zkkfk:
+            ipv4_address: 172.19.0.11
+    zk2:
+        image: zookeeper:3.4
+        restart: always
+        container_name: zk2
+        ports:
+          - "2183:2181"
+        volumes: 
+        - /home/chrdw/zkcluster/zk2/data:/data
+        - /home/chrdw/zkcluster/zk2/datalog:/datalog
+        environment:
+            ZOO_MY_ID: 3
+            ZOO_SERVERS: server.1=zk0:2888:3888 server.2=zk1:2888:3888 server.3=zk2:2888:3888
+        networks: 
+          zkkfk:
+            ipv4_address: 172.19.0.12
+networks: 
+  zkkfk:
+    external: 
+      name: zkkfk
