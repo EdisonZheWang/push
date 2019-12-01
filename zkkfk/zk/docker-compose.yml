@@ -2,7 +2,7 @@ version: '2'
 services:
   zk1:
     image: zookeeper:3.4
-    restart: on-failure
+    restart: always
     hostname: zk1
     container_name: zk1
     ports:
@@ -18,7 +18,7 @@ services:
         ipv4_address: 172.19.1.10
   zk2:
     image: zookeeper:3.4
-    restart: on-failure
+    restart: always
     container_name: zk2
     ports:
       - "2182:2181"
@@ -33,7 +33,7 @@ services:
         ipv4_address: 172.19.1.11
   zk3:
     image: zookeeper:3.4
-    restart: on-failure
+    restart: always
     container_name: zk3
     ports:
       - "2183:2181"
