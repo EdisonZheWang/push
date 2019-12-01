@@ -37,7 +37,7 @@ services:
       - zk1
       - zk2
       - zk3
-   networks:
+    networks:
      zkkfk:
        ipv4_address: 172.19.1.14
   kafka3:
