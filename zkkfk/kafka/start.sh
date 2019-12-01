@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker-compose up -d
+COMPOSE_PROJECT_NAME=kfk_test docker-compose up -d
