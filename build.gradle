@@ -51,26 +51,26 @@ repositories {
 }
 
 dependencies {
-    compile "org.springframework.boot:spring-boot-configuration-processor"
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile group: 'org.apache.zookeeper', name: 'zookeeper', version: '3.4.0', ext: 'pom'
-    compile group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.1.7.RELEASE'
+    compile (group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.1.7.RELEASE') {
+        exclude(module: 'kafka-clients')
+    }
+    compile group: 'org.apache.kafka', name: 'kafka-clients', version: '1.0.0'
+
 
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
-    testCompile group: 'io.springfox', name: 'springfox-staticdocs',version: '2.0.1'
     testCompile group: 'junit', name: 'junit', version:'4.12'
     testCompile group: 'org.mockito', name: 'mockito-all', version:'1.10.19'
-    testCompile 'org.codehaus.groovy:groovy-all:2.4.6'
+    testCompile group: 'org.springframework.kafka', name: 'spring-kafka-test', version: '2.1.7.RELEASE'
 
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.cloud:spring-cloud-starter-config'
-    implementation 'org.springframework.cloud:spring-cloud-bus'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	implementation 'org.springframework.retry:spring-retry'
 
 }
 
