@@ -53,7 +53,7 @@ repositories {
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile group: 'org.apache.zookeeper', name: 'zookeeper', version: '3.4.0', ext: 'pom'
-    compile group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.1.7.RELEASE'
+    compile group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.2.1.RELEASE'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

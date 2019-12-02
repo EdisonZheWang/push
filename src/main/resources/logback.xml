@@ -4,28 +4,28 @@
     <Property name="path" value="."/>
 
     <appender name="defaultAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${path}/log/com-chrdw-push.txt</file>
+        <file>${path}/logs/com-chrdw-push.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>%d{dd/MMM/yyyy HH:mm:ss,SSS} - %X{sessionId} - %c{1}: %m%n</Pattern>
         </encoder>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- rollover daily and when the file reaches 10 MegaBytes -->
-            <fileNamePattern>${path}/log/com-chrdw-push-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+            <fileNamePattern>${path}/logs/com-chrdw-push-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxFileSize>10MB</maxFileSize>
             <maxHistory>10</maxHistory>
         </rollingPolicy>
     </appender>
 
     <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${path}/log/com-chrdw-push-events.txt</file>
+        <file>${path}/logs/com-chrdw-push-events.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>%m%n</Pattern>
         </encoder>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- rollover daily and when the file reaches 10 MegaBytes -->
-            <fileNamePattern>${path}/log/com-chrdw-push-events-%d{yyyy-MM-dd}.%i.txt
+            <fileNamePattern>${path}/logs/com-chrdw-push-events-%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
             <maxFileSize>10MB</maxFileSize>
             <maxHistory>10</maxHistory>
@@ -33,14 +33,14 @@
     </appender>
 
     <appender name="RollingFileTxn" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${path}/log/com-chrdw-push-transactions.txt</file>
+        <file>${path}/logs/com-chrdw-push-transactions.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>%m%n</Pattern>
         </encoder>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- rollover daily and when the file reaches 10 MegaBytes -->
-            <fileNamePattern>${path}/log/com-chrdw-push-transactions-%d{yyyy-MM-dd}.%i.txt
+            <fileNamePattern>${path}/logs/com-chrdw-push-transactions-%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
             <maxFileSize>10MB</maxFileSize>
             <maxHistory>10</maxHistory>
@@ -48,14 +48,14 @@
     </appender>
 
     <appender name="RollingFileReqResp" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${path}/log/com-chrdw-push-reqresp.txt</file>
+        <file>${path}/logs/com-chrdw-push-reqresp.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>%m%n</Pattern>
         </encoder>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- rollover daily and when the file reaches 10 MegaBytes -->
-            <fileNamePattern>${path}/log/com-chrdw-push-reqresp-%d{yyyy-MM-dd}.%i.txt
+            <fileNamePattern>${path}/logs/com-chrdw-push-reqresp-%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
             <maxFileSize>10MB</maxFileSize>
             <maxHistory>10</maxHistory>
@@ -63,14 +63,14 @@
     </appender>
 
     <appender name="RollingFileConsume" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${path}/log/com-chrdw-push-consume.txt</file>
+        <file>${path}/logs/com-chrdw-push-consume.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>%m%n</Pattern>
         </encoder>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- rollover daily and when the file reaches 10 MegaBytes -->
-            <fileNamePattern>${path}/log/com-chrdw-push-consume-%d{yyyy-MM-dd}.%i.txt
+            <fileNamePattern>${path}/logs/com-chrdw-push-consume-%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
             <maxFileSize>10MB</maxFileSize>
             <maxHistory>10</maxHistory>
@@ -78,14 +78,14 @@
     </appender>
 
     <appender name="RollingFileProduce" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${path}/log/com-chrdw-push-produce.txt</file>
+        <file>${path}/logs/com-chrdw-push-produce.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>%m%n</Pattern>
         </encoder>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- rollover daily and when the file reaches 10 MegaBytes -->
-            <fileNamePattern>${path}/log/com-chrdw-push-produce-%d{yyyy-MM-dd}.%i.txt
+            <fileNamePattern>${path}/logs/com-chrdw-push-produce-%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
             <maxFileSize>10MB</maxFileSize>
             <maxHistory>10</maxHistory>
@@ -126,7 +126,7 @@
 
     <!-- LOG everything at INFO level -->
     <root level="info">
-<!--        <appender-ref ref="defaultAppender"/>-->
+        <appender-ref ref="defaultAppender"/>
         <appender-ref ref="STDOUT"/>
     </root>
 
