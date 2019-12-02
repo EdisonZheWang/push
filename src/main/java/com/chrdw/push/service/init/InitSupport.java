@@ -12,4 +12,10 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  */
 @Configuration
 public class InitSupport {
+
+  @Bean
+  @ConfigurationProperties(prefix = "config.appconfig.pushexecutor")
+  public ThreadPoolTaskExecutor pushExecutor() {
+    return new ThreadPoolTaskExecutor();
+  };
 }

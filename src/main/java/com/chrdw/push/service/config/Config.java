@@ -1,5 +1,6 @@
 package com.chrdw.push.service.config;
 
+import com.chrdw.push.service.kafka.PriceEventConsumer;
 import com.chrdw.push.service.kafka.init.MultiListener;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;

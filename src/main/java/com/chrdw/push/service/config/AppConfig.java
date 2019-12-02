@@ -1,6 +1,7 @@
 package com.chrdw.push.service.config;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,8 @@ public class AppConfig {
 
   private int consumeEventThreadCnt;
   private int produceEventThreadCnt;
+  private String kafkaTopicId;
 
+  @Autowired
   private ThreadPoolTaskExecutor pushExecutor;
 }

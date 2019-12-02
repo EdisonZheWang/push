@@ -1,6 +1,8 @@
 package com.chrdw.push.service.kafka;
 
 import com.chrdw.push.service.config.Config;
+import com.chrdw.push.service.kafka.init.MultiListener;
+import org.apache.zookeeper.client.ZooKeeperSaslClient;
 import org.slf4j.Logger;
 
 /**
@@ -9,7 +11,6 @@ import org.slf4j.Logger;
  */
 
 public class PriceEventConsumer implements Runnable {
-
 
   private Config config;
   private Logger logger;
