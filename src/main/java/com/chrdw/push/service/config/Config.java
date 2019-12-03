@@ -1,7 +1,6 @@
 package com.chrdw.push.service.config;
 
-import com.chrdw.push.service.kafka.PriceEventConsumer;
-import com.chrdw.push.service.kafka.init.MultiListener;
+import com.chrdw.push.service.kafka.init.KafkaConsumerFactory;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,7 +25,8 @@ public class Config {
   private CustomConfig customConfig;
 
   @Autowired
-  private MultiListener multiListener;
+  @Qualifier("customKafkaConsumerFactory")
+  private KafkaConsumerFactory customKafkaConsumerFactory;
 
   @Autowired
   @Qualifier("kafkaProducer")

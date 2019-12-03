@@ -16,6 +16,8 @@ public class AppConfig {
   private int consumeEventThreadCnt;
   private int produceEventThreadCnt;
   private String kafkaTopicId;
+  private String kafkaConsumerPollBatchSize;
+  private int kafkaConsumerPollTimeOut;
 
   @Autowired
   private ThreadPoolTaskExecutor pushExecutor;

@@ -24,14 +24,15 @@ public class PriceEventProducer implements Runnable {
   public void run() {
     KafkaTemplate kafkaTemplate = config.getKafkaTemplate();
     String kafkaTopicId = config.getAppConfig().getKafkaTopicId();
-    PriceEvent priceEvent = new PriceEvent();
-    priceEvent.setKey(UUID.randomUUID().toString());
-    kafkaTemplate.send(kafkaTopicId, priceEvent);
-    logger.info("produce kafka event");
-    try {
-      Thread.sleep(5 * 1000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+    while (true) {
+      try {
+        PriceEvent priceEvent = new PriceEvent();
+        kafkaTemplate.send(kafkaTopicId, UUID.randomUUID().toString(), priceEvent);
+        logger.info("produce kafka event");
+        Thread.sleep(10 * 1000);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
   }
 }

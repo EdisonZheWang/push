@@ -3,6 +3,7 @@ package com.chrdw.push.service.kafka.init;
 import com.chrdw.push.service.datamodel.PriceEvent;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
@@ -41,28 +42,14 @@ public class KafkaConfiguration {
     return new KafkaTemplate<>(producerFactory());
   }
 
-  @Bean
-  ConcurrentKafkaListenerContainerFactory<String, PriceEvent> kafkaListenerContainerFactory() {
-    ConcurrentKafkaListenerContainerFactory<String, PriceEvent> factory =
-      new ConcurrentKafkaListenerContainerFactory<>();
-    factory.setConsumerFactory(consumerFactory());
-    return factory;
-  }
-
-  @Bean
-  public ConsumerFactory<String, PriceEvent> consumerFactory() {
-    return new DefaultKafkaConsumerFactory<>(consumerConfigs());
-  }
-
-  @Bean
-  public Map<String, Object> consumerConfigs() {
+  private Map<String, Object> consumerConfigs() {
     Map<String, Object> props = new HashMap<>(kafkaProperties.buildConsumerProperties());
     return props;
   }
 
   @Bean
-  @KafkaListener(topics = "${config.appconfig.kafkaTopicId}")
-  public MultiListener multiListener() {
-    return new MultiListener();
+  public KafkaConsumerFactory customKafkaConsumerFactory() {
+    return new KafkaConsumerFactory<String, PriceEvent>(consumerConfigs());
   }
+
 }

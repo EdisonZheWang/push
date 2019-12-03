@@ -1,8 +1,11 @@
 package com.chrdw.push.service.kafka;
 
 import com.chrdw.push.service.config.Config;
-import com.chrdw.push.service.kafka.init.MultiListener;
-import org.apache.zookeeper.client.ZooKeeperSaslClient;
+import com.chrdw.push.service.datamodel.PriceEvent;
+import java.time.Duration;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.slf4j.Logger;
 
 /**
@@ -22,11 +25,21 @@ public class PriceEventConsumer implements Runnable {
 
   @Override
   public void run() {
-    logger.info("receive kafka event");
-    try {
-      Thread.sleep(5 * 1000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+    KafkaConsumer<String, PriceEvent> kafkaConsumer =
+      config.getCustomKafkaConsumerFactory().getKafkaConsumer(config.getAppConfig().getKafkaTopicId());
+    while (true) {
+      try {
+        Thread.sleep(5 * 1000);
+        ConsumerRecords<String, PriceEvent> records = kafkaConsumer
+          .poll(Duration.ofSeconds(config.getAppConfig().getKafkaConsumerPollTimeOut()));
+        for (ConsumerRecord<String, PriceEvent> record : records) {
+          System.out.println(record.key() + "-" + record.value() + "-" + record.offset() + "-" + record.partition());
+        }
+        Thread.sleep(5 * 1000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
     }
+
   }
 }

@@ -4,9 +4,9 @@ spring:
   kafka:
     # 指定kafka 代理地址，可以多个
     bootstrap-servers:
-      - 192.168.23.132:9092
+#      - 192.168.23.132:9092
       - 192.168.23.132:9091
-      - 192.168.23.132:9093
+#      - 192.168.23.132:9093
     # =============== 生产者配置=============
     producer:
       retries: 1
@@ -41,11 +41,14 @@ config:
 # ========AppConfig============
   appconfig:
     consumeEventThreadCnt: 1
-    produceEventThreadCnt: 10
+    produceEventThreadCnt: 2
     pushexecutor:
       corePoolSize: 10
       maxPoolSize: 10
     kafkaTopicId: price-event
+    kafkaConsumerPollBatchSize: 10
+    kafkaConsumerPollTimeOut: 5
+
 # ========AppConfig============
 
 # ========CustomConfig============
