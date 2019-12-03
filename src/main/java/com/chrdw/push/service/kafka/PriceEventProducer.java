@@ -29,7 +29,6 @@ public class PriceEventProducer implements Runnable {
         PriceEvent priceEvent = new PriceEvent();
         kafkaTemplate.send(kafkaTopicId, UUID.randomUUID().toString(), priceEvent);
         logger.info("produce kafka event");
-        Thread.sleep(10 * 1000);
       } catch (Exception e) {
         e.printStackTrace();
       }

@@ -25,18 +25,17 @@ public class PriceEventConsumer implements Runnable {
 
   @Override
   public void run() {
-    KafkaConsumer<String, PriceEvent> kafkaConsumer =
-      config.getCustomKafkaConsumerFactory().getKafkaConsumer(config.getAppConfig().getKafkaTopicId());
+    KafkaConsumer<String, PriceEvent> kafkaConsumer = config.getCustomKafkaConsumerFactory()
+      .getKafkaConsumer(config.getAppConfig().getKafkaTopicId());
     while (true) {
       try {
-        Thread.sleep(5 * 1000);
         ConsumerRecords<String, PriceEvent> records = kafkaConsumer
           .poll(Duration.ofSeconds(config.getAppConfig().getKafkaConsumerPollTimeOut()));
         for (ConsumerRecord<String, PriceEvent> record : records) {
-          System.out.println(record.key() + "-" + record.value() + "-" + record.offset() + "-" + record.partition());
+          System.out.println(
+            record.key() + "-" + record.value() + "-" + record.offset() + "-" + record.partition());
         }
-        Thread.sleep(5 * 1000);
-      } catch (InterruptedException e) {
+      } catch (Exception e) {
         e.printStackTrace();
       }
     }
