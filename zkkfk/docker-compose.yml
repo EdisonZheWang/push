@@ -7,9 +7,6 @@ services:
     container_name: zk1
     ports:
       - "2181:2181"
-    volumes:
-      - /home/chrdw/zkcluster/zk1/data:/data
-      - /home/chrdw/zkcluster/zk1/datalog:/datalog
     environment:
       ZOO_MY_ID: 1
       ZOO_SERVERS: server.1=zk1:2888:3888 server.2=zk2:2888:3888 server.3=zk3:2888:3888
@@ -22,9 +19,6 @@ services:
     container_name: zk2
     ports:
       - "2182:2181"
-    volumes:
-      - /home/chrdw/zkcluster/zk2/data:/data
-      - /home/chrdw/zkcluster/zk2/datalog:/datalog
     environment:
       ZOO_MY_ID: 2
       ZOO_SERVERS: server.1=zk1:2888:3888 server.2=zk2:2888:3888 server.3=zk3:2888:3888
@@ -39,9 +33,6 @@ services:
     container_name: zk3
     ports:
       - "2183:2181"
-    volumes:
-      - /home/chrdw/zkcluster/zk3/data:/data
-      - /home/chrdw/zkcluster/zk3/datalog:/datalog
     environment:
       ZOO_MY_ID: 3
       ZOO_SERVERS: server.1=zk1:2888:3888 server.2=zk2:2888:3888 server.3=zk3:2888:3888
@@ -62,8 +53,6 @@ services:
       KAFKA_ADVERTISED_HOST_NAME: kafka1
       KAFKA_ADVERTISED_PORT: 9092
       KAFKA_ZOOKEEPER_CONNECT: zk1:2181,zk2:2181,zk3:2181
-    volumes:
-      - /home/chrdw/kfkcluster/kafka1/logs:/logs
     external_links:
       - zk1
       - zk2
@@ -86,8 +75,6 @@ services:
       KAFKA_ADVERTISED_HOST_NAME: kafka2
       KAFKA_ADVERTISED_PORT: 9092
       KAFKA_ZOOKEEPER_CONNECT: zk1:2181,zk2:2181,zk3:2181
-    volumes:
-      - /home/chrdw/kfkcluster/kafka2/logs:/logs
     external_links:
       - zk1
       - zk2
@@ -110,8 +97,6 @@ services:
       KAFKA_ADVERTISED_HOST_NAME: kafka3
       KAFKA_ADVERTISED_PORT: 9092
       KAFKA_ZOOKEEPER_CONNECT: zk1:2181,zk2:2181,zk3:2181
-    volumes:
-      - /home/chrdw/kfkcluster/kafka3/logs:/logs
     external_links:
       - zk1
       - zk2
