@@ -1,7 +1,7 @@
 version: '2'
 services:
   zk1:
-    image: zookeeper:3.4.6
+    image: zookeeper:3.4.14
     restart: always
     hostname: zk1
     container_name: zk1
@@ -17,7 +17,7 @@ services:
       zkkfk:
         ipv4_address: 172.19.1.10
   zk2:
-    image: zookeeper:3.4.6
+    image: zookeeper:3.4.14
     restart: always
     container_name: zk2
     ports:
@@ -34,7 +34,7 @@ services:
       zkkfk:
         ipv4_address: 172.19.1.11
   zk3:
-    image: zookeeper:3.4.6
+    image: zookeeper:3.4.14
     restart: always
     container_name: zk3
     ports:
