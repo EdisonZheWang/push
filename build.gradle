@@ -42,7 +42,8 @@ tasks.withType(JavaCompile) {
 
 mainClassName = 'com.chrdw.push.service.Starter'
 
-configurations.all {
+configurations {
+    compile.exclude group:'org.slf4j', module:'slf4j-log4j12'
 }
 
 repositories {
@@ -53,10 +54,9 @@ repositories {
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.2.1.RELEASE'
-    compile (group: 'org.apache.curator', name: 'curator-framework', version: '4.0.0') {
-        exclude(module: 'zookeeper')
-    }
-    compile group: 'org.apache.zookeeper', name: 'zookeeper', version: '3.4.6', ext: 'pom'
+    compile group: 'org.apache.curator', name: 'curator-framework', version: '4.0.0'
+
+    compile group: 'redis.clients', name: 'jedis', version: '2.9.0'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

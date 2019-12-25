@@ -120,10 +120,6 @@
         <appender-ref ref="RollingFileProduce"/>
     </logger>
 
-    <logger name="ch.qos.logback" level="ERROR" additivity="false">
-        <appender-ref ref="defaultAppender"/>
-    </logger>
-
     <!-- LOG everything at INFO level -->
     <root level="info">
         <appender-ref ref="defaultAppender"/>

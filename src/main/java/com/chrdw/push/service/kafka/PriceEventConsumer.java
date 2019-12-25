@@ -1,7 +1,7 @@
 package com.chrdw.push.service.kafka;
 
 import com.chrdw.push.service.config.Config;
-import com.chrdw.push.service.datamodel.PriceEvent;
+import com.chrdw.push.service.model.PriceEvent;
 import java.time.Duration;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;

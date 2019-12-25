@@ -1,4 +1,4 @@
-package com.chrdw.push.service.datamodel;
+package com.chrdw.push.service.model;
 
 public enum ShoppingPath {
   Standalone,

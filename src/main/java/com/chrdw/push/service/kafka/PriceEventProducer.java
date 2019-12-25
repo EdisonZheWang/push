@@ -1,7 +1,7 @@
 package com.chrdw.push.service.kafka;
 
 import com.chrdw.push.service.config.Config;
-import com.chrdw.push.service.datamodel.PriceEvent;
+import com.chrdw.push.service.model.PriceEvent;
 import java.util.UUID;
 import org.slf4j.Logger;
 import org.springframework.kafka.core.KafkaTemplate;
