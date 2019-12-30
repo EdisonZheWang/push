@@ -29,6 +29,7 @@ spring:
           json:
             trusted:
               packages: com.chrdw.push.service.model
+      max-poll-records: 20
 
 
 server:

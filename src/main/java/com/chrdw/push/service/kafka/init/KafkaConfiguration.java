@@ -1,6 +1,7 @@
 package com.chrdw.push.service.kafka.init;
 
 import com.chrdw.push.service.model.PriceEvent;
+import java.lang.management.ManagementFactory;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +39,9 @@ public class KafkaConfiguration {
   }
 
   private Map<String, Object> consumerConfigs() {
-    Map<String, Object> props = new HashMap<>(kafkaProperties.buildConsumerProperties());
-    return props;
+    kafkaProperties.setClientId("chrdw-push-service".concat("-")
+      .concat(ManagementFactory.getRuntimeMXBean().getName().split("@")[1].replace('.', '_')));
+    return new HashMap<>(kafkaProperties.buildConsumerProperties());
   }
 
   @Bean
