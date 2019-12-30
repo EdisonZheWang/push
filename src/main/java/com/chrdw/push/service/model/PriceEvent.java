@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @Date: 2019/12/1
- * @author: <a href="mailto:v-edwang@expedia.com">Edwang</a>
+ * @author: <a href="mailto:chrdw.p@gmail.com">Edison Zhe Wang</a>
  */
 public class PriceEvent {
 

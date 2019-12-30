@@ -8,7 +8,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 
 /**
  * @Date: 2019/12/1
- * @author: <a href="mailto:v-edwang@expedia.com">Edwang</a>
+ * @author: <a href="mailto:chrdw.p@gmail.com">Edison Zhe Wang</a>
  */
 public class PriceEventProducer implements Runnable {
 
@@ -22,7 +22,7 @@ public class PriceEventProducer implements Runnable {
 
   @Override
   public void run() {
-    KafkaTemplate kafkaTemplate = config.getKafkaTemplate();
+    KafkaTemplate<String, PriceEvent> kafkaTemplate = config.getKafkaTemplate();
     String kafkaTopicId = config.getAppConfig().getKafkaTopicId();
     while (true) {
       try {

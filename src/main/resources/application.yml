@@ -53,6 +53,7 @@ config:
     kafkaTopicId: price-event
     kafkaConsumerPollBatchSize: 10
     kafkaConsumerPollTimeOut: 5
+    pushTimeout: 5000
 
 # ========AppConfig============
 

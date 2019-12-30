@@ -6,7 +6,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 /**
  * @Date: 12/3/19
- * @author: <a href="mailto:v-edwang@expedia.com">Edwang</a>
+ * @author: <a href="mailto:chrdw.p@gmail.com">Edison Zhe Wang</a>
  */
 public class KafkaConsumerFactory<k, v> {
 

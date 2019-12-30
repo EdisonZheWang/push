@@ -8,7 +8,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
  * @Date: 2019/12/1
- * @author: <a href="mailto:v-edwang@expedia.com">Edwang</a>
+ * @author: <a href="mailto:chrdw.p@gmail.com">Edison Zhe Wang</a>
  */
 @Configuration
 public class InitSupport {

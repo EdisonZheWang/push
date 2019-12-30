@@ -23,7 +23,7 @@ public class ZkStudy {
       zk = new ZooKeeper(ZKHOST, TIMEOUT, new Watcher() {
         @Override
         public void process(WatchedEvent event) {
-          System.out.println("Something Happening...");
+          System.out.println("Something Happening..." + event.getType().toString());
         }
       });
       String s = zk.create("/ZkStudy", "Study Of ZK".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE,

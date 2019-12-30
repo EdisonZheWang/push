@@ -12,13 +12,16 @@ import org.springframework.stereotype.Component;
 
 /**
  * @Date: 2019/12/1
- * @author: <a href="mailto:v-edwang@expedia.com">Edwang</a>
+ * @author: <a href="mailto:chrdw.p@gmail.com">Edison Zhe Wang</a>
  */
 @Component
 public class PushManager implements InitializingBean {
 
   @Autowired
   private Config config;
+
+  @Autowired
+  private IPushHandler pushHandler;
 
   @Override
   public void afterPropertiesSet() throws Exception {
@@ -28,12 +31,12 @@ public class PushManager implements InitializingBean {
     int consumeEventThreadCnt = config.getAppConfig().getConsumeEventThreadCnt();
     Logger consumeLogger = LoggerFactory.getLogger("consume.logger");
     for (int i = 0; i < consumeEventThreadCnt; i++) {
-      executor.submit(new PriceEventConsumer(config, consumeLogger));
+      executor.submit(new PriceEventConsumer(config, consumeLogger, pushHandler));
     }
     int produceEventThreadCnt = config.getAppConfig().getProduceEventThreadCnt();
     Logger produceLogger = LoggerFactory.getLogger("produce.logger");
-    for (int i = 0; i < produceEventThreadCnt; i++) {
+    /*for (int i = 0; i < produceEventThreadCnt; i++) {
       executor.submit(new PriceEventProducer(config, produceLogger));
-    }
+    }*/
   }
 }
