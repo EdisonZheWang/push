@@ -24,8 +24,7 @@ public class KafkaConfiguration {
 
   @Bean
   public Map<String, Object> producerConfigs() {
-    Map<String, Object> props = new HashMap<>(kafkaProperties.buildProducerProperties());
-    return props;
+    return kafkaProperties.buildProducerProperties();
   }
 
   @Bean
@@ -39,9 +38,7 @@ public class KafkaConfiguration {
   }
 
   private Map<String, Object> consumerConfigs() {
-    kafkaProperties.setClientId("chrdw-push-service".concat("-")
-      .concat(ManagementFactory.getRuntimeMXBean().getName().split("@")[1].replace('.', '_')));
-    return new HashMap<>(kafkaProperties.buildConsumerProperties());
+    return kafkaProperties.buildConsumerProperties();
   }
 
   @Bean

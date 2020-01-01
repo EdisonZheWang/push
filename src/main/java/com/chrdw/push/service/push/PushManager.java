@@ -35,8 +35,8 @@ public class PushManager implements InitializingBean {
     }
     int produceEventThreadCnt = config.getAppConfig().getProduceEventThreadCnt();
     Logger produceLogger = LoggerFactory.getLogger("produce.logger");
-    /*for (int i = 0; i < produceEventThreadCnt; i++) {
+    for (int i = 0; i < produceEventThreadCnt; i++) {
       executor.submit(new PriceEventProducer(config, produceLogger));
-    }*/
+    }
   }
 }

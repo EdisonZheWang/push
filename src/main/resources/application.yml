@@ -20,8 +20,7 @@ spring:
     consumer:
       group-id: price-push
       auto-offset-reset: earliest
-      enable-auto-commit: true
-      auto-commit-interval: 100
+      enable-auto-commit: false
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:

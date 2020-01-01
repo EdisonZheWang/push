@@ -38,10 +38,10 @@ public class PriceEventConsumer implements Runnable {
         for (ConsumerRecord<String, PriceEvent> record : records) {
           System.out.println(
             record.key() + "-" + record.value() + "-" + record.offset() + "-" + record.partition());
-          Mono.just(record.value()).map(m -> pushHandler.handlePush(m)).doOnError(e -> e.printStackTrace()).doFinally(signalType -> {
+          Mono.just(record.value()).map(m -> pushHandler.handlePush(m))
+            .doOnError(Throwable::printStackTrace).doFinally(signalType -> {
             kafkaConsumer.commitAsync();
-          })
-            .block(Duration.ofSeconds(config.getAppConfig().getPushTimeout()));
+          }).block(Duration.ofSeconds(config.getAppConfig().getPushTimeout()));
         }
       } catch (Exception e) {
         e.printStackTrace();
